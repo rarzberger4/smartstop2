@@ -11,8 +11,8 @@ const contactRouter = require('./api/routes/contactRouter')
 const app = express();
 const port = process.env.PORT ?? 3000;
 
-// Serving static files from folder 'files'
-app.use(express.static((__dirname, 'files/html')));
+//serving public file
+app.use(express.static((__dirname, 'files')));
 
 // Parse urlencoded bodies (for form data)
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,6 +34,21 @@ app.use('/api', indexRouter);
 
 
 
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/files/html/index.html');
+});
+
+app.get('/index.html', (req, res) => {
+    res.sendFile(__dirname + '/files/html/index.html');
+});
+
+app.get('/planner.html', (req, res) => {
+    res.sendFile(__dirname + '/files/html/planner.html');
+});
+
+app.get('/contact.html', (req, res) => {
+    res.sendFile(__dirname + '/files/html/contact.html');
+});
 
 
 
@@ -53,14 +68,6 @@ app.use(sessions({
     resave: false
 }));
 
-
-// parsing the incoming data
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-//serving public file
-app.use(express.static((__dirname, 'files')));
-
 // cookie parser middleware
 app.use(cookieParser());
 
@@ -71,23 +78,28 @@ const mypassword = 'mypassword';
 // a variable to save a session
 let session;        //this would be stored in a DB
 
-app.get('/',(req,res) => {
+
+// Route to Login Page
+
+app.get('/login',(req,res) => {
     session=req.session;
     if(session.userid){
-        res.send("Welcome User <a href=\'/logout'>click to logout</a>");
+        res.sendFile(__dirname + '/files/html/index.html');
+        //res.send("Welcome User <a href=\'/logout'>click to logout</a>");
 
     }else
-        res.sendFile('/files/index.html',{root:__dirname});
+        res.sendFile('/files/html/index.html',{root:__dirname});
         //app.use(express.static((__dirname, 'files')));
 });
 
 
-app.post('/user',(req,res) => {
+app.post('/login',(req,res) => {
     if(req.body.username === myusername && req.body.password === mypassword){
         session=req.session;
         session.userid=req.body.username;
         console.log(req.session);
-        res.send(`Hey there, welcome <a href=\'/logout'>click to logout</a>`);
+        //res.send(`Hey there, welcome <a href=\'/logout'>click to logout</a>`);
+        res.sendFile(__dirname + '/files/html/index.html');
 
     }else{
             res.send('Invalid username or password');
