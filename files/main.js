@@ -1,6 +1,7 @@
-window.addEventListener("load", function(){
 
-    alert("Test1");
+
+window.addEventListener("load", function(){     //loads js after HTML is loaded - else possibility of an error js loading to early
+
     let testButton = document.createElement("button");
     testButton.innerHTML = "Test";
 
@@ -19,10 +20,7 @@ window.addEventListener("load", function(){
 
 
 
-
     });
-
-
 
 
 });
