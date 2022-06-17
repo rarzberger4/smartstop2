@@ -3,6 +3,7 @@ body{
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-auto-flow: row;
+    grid-gap: 20px;
     grid-template-areas:
         "header"
         "n"
@@ -10,15 +11,18 @@ body{
         "weather"
         "news"
         "footer";
-    background-color: black;
+    background-color: white;
+    border-color: black;
 }
 
 @media (min-width: 642px) {
     body {
+        padding: 15px;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
         gap: 0 0;
+        grid-gap: 20px;
         grid-auto-flow: row;
         grid-template-areas:
             "header header header"
@@ -26,19 +30,26 @@ body{
             "wienerLinien wienerLinien weather"
             "news news weather"
             "footer footer footer";
-        background-color: darkmagenta;
+        background-color: black;
     }
 }
 
 #header{
     grid-area: header;
     position: sticky;
-    text-align: center
+    text-align: center;
+}
+
+h1{
+    color: #ffc125;
+    font: 60px/70px 'DIGITAL', Helvetica;
+    font-weight: 700;
 }
 
 #navbar{
     grid-area: n;
     position: sticky;
+    background: #444c44;
 }
 
 nav ul{
@@ -51,36 +62,59 @@ nav ul{
 nav ul li{
     flex: 1;
     vertical-align: middle;
-    text-align: center
+    text-align: center;
+}
+
+a{
+    color: white;
 }
 
 #wienerLinien{
     grid-area: wienerLinien;
     border-collapse: collapse;
-    border-color: orange;
+    padding: 10px;
+
+    background: limegreen;
+    border-color: ghostwhite;
     border-style: solid;
 }
 
 #weather{
     grid-area: weather;
     border-collapse: collapse;
-    border-color: orange;
+    padding: 10px;
+
+    background: greenyellow;
+    border-color: ghostwhite;
     border-style: solid;
 }
 #news{
     grid-area: news;
     border-collapse: collapse;
-    border-color: orange;
+    padding: 10px;
+
+    background: yellowgreen;
+    border-color: ghostwhite;
     border-style: solid;
 }
 
 #footer{
     grid-area: footer;
     position: sticky;
+    text-align: center;
+    font-size: small;
+    color: white;
 }
 
 *{
-    color: white;
+    color: black;
+    font: 15px/25px 'DIGITAL', Helvetica;
+
+    /* Round corners */
+    border: 3px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 
 form {
