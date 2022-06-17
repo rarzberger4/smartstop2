@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const controllerNews = require('../controllers/newsController');
-const controllerWeather = require('../controllers/weatherControllr');
+const controllerWeather = require('../controllers/weatherController');
 const controllerWL = require('../controllers/wienerLinienController');
 
 const routes = Router();
