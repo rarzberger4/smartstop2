@@ -1,0 +1,68 @@
+body{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "header"
+        "n"
+        "wienerLinien"
+        "footer";
+    background-color: black;
+}
+
+@media (min-width: 642px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        gap: 0 0;
+        grid-auto-flow: row;
+        grid-template-areas:
+            "header header header"
+            "n n n"
+            "wienerLinien wienerLinien wienerLinien"
+            "footer footer footer";
+        background-color: darkmagenta;
+    }
+}
+
+#header{
+    grid-area: header;
+    position: sticky;
+    text-align: center
+}
+
+#navbar{
+    grid-area: n;
+    position: sticky;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+}
+nav ul li{
+    flex: 1;
+    vertical-align: middle;
+    text-align: center
+}
+
+#wienerLinien{
+    grid-area: wienerLinien;
+    border-collapse: collapse;
+    border-color: orange;
+    border-style: solid;
+}
+
+#footer{
+    grid-area: footer;
+    position: sticky;
+}
+
+*{
+    color: white;
+}
