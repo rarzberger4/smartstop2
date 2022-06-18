@@ -52,16 +52,19 @@ app.use(sessions({
     resave: false
 }));
 
+//users and PWs --> usually a DB
+const users = [
+    { id: 1, user: "user1", password: "secret"},
+    { id: 2, user: "user2", password: "secret"},
+    { id: 3, user: "user3", password: "secret"},
+]
+
 // cookie parser middleware
 app.use(cookieParser());
 
-//username and password
-const myusername = 'user1';
-const mypassword = 'mypassword';
 
 // a variable to save a session
 let session;        //this would be stored in a DB
-
 
 
 // Route to Login Page
@@ -73,8 +76,8 @@ app.get('/login',(req,res) => {
         res.sendFile('/files/html/login.html',{root:__dirname});
 });
 
-
-app.post('/login',(req,res) => {                            //login form is processed here
+app.post('/login',(req,res) => {//login form is processed here
+    /*
     if(req.body.username === myusername && req.body.password === mypassword){
         session=req.session;
         session.userid=req.body.username;
@@ -83,17 +86,35 @@ app.post('/login',(req,res) => {                            //login form is proc
 
     }else{
             res.send('Invalid username or password');
+    }*/
+
+    const user = users.find(
+        user => user.user === req.body.username && user.password === req.body.password
+    )
+
+    if(user){
+        session=req.session;
+        session.userid=req.body.username;
+        console.log(req.session);
+        res.redirect("/index.html");
+    }else {
+        res.send('Invalid username or password');
     }
-})
+});
 
 app.get('/logout',(req,res) => {
     req.session.destroy();
     res.redirect('/');
 });
 
-
 app.get('/', (req, res) => {                    //sends you directly to login if you land on the page
-    res.sendFile(__dirname + '/files/html/login.html');
+    session=req.session;
+    if(session.userid){
+        res.sendFile(__dirname + '/files/html/index.html');
+        //res.send("Welcome User <a href=\'/logout'>click to logout</a>");
+
+    }else
+        res.sendFile('/files/html/login.html',{root:__dirname});
 });
 
 app.get('/index.html', (req, res) => {          //checks if you have a valid session before routing you to the page --> logged in
@@ -110,8 +131,6 @@ app.get('/planner.html', (req, res) => {        //checks if you have a valid ses
     session=req.session;
     if(session.userid){
         res.sendFile(__dirname + '/files/html/planner.html');
-        //res.send("Welcome User <a href=\'/logout'>click to logout</a>");
-
     }else
         res.sendFile('/files/html/login.html',{root:__dirname});
 });
@@ -120,13 +139,41 @@ app.get('/contact.html', (req, res) => {             //checks if you have a vali
     session=req.session;
     if(session.userid){
         res.sendFile(__dirname + '/files/html/contact.html');
-        //res.send("Welcome User <a href=\'/logout'>click to logout</a>");
 
     }else
         res.sendFile('/files/html/login.html',{root:__dirname});
 });
 
+app.get('/register', (req, res) => {
+    res.sendFile(__dirname + '/files/html/register.html');
+});
 
+app.post('/register', (req, res) => {
+    if(req.body.username && req.body.password){
+        const exists = users.some(
+            user => user.user === req.body.username
+        )
+
+        if(!exists){
+            const user = {
+                id: users.length + 1,
+                user: req.body.username,
+                password: req.body.password
+            }
+
+            users.push(user);
+
+            session=req.session;
+            session.userid=req.body.username;
+            console.log(req.session);
+            res.redirect("/index.html");
+        }else{
+            res.redirect("/register" + encodeURIComponent('Incorrect username or password'));
+        }
+
+    }
+
+});
 
 
 
