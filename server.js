@@ -38,17 +38,17 @@ app.use('/api', indexRouter);
 
 
 
-//###Session Management###
+//###Session Management & Routing###
 
 
 // creating 24 hours from milliseconds
-const oneDay = 1000 * 60 * 60 * 24;
+const oneHour = 1000 * 60 * 60;
 
 //session middleware
 app.use(sessions({
     secret: "super9secret8secret7for6the5super4secret3session2",            //in production environment much longer and random created
     saveUninitialized:true,
-    cookie: { maxAge: oneDay },
+    cookie: { maxAge: oneHour },
     resave: false
 }));
 
@@ -67,34 +67,24 @@ app.use(cookieParser());
 let session;        //this would be stored in a DB
 
 
-// Route to Login Page
+
 app.get('/login',(req,res) => {
     session=req.session;
     if(session.userid){                                                                           //checks if there is a session id (cookie)
         res.sendFile(__dirname + '/files/html/index.html');
     }else
-        res.sendFile('/files/html/login.html',{root:__dirname});
+        res.sendFile('/files/html/login.html',{root:__dirname});                      //else login is required
 });
 
-app.post('/login',(req,res) => {//login form is processed here
-    /*
-    if(req.body.username === myusername && req.body.password === mypassword){
-        session=req.session;
-        session.userid=req.body.username;
-        console.log(req.session);
-        res.sendFile(__dirname + '/files/html/index.html');
+app.post('/login',(req,res) => {            //login form is processed here
 
-    }else{
-            res.send('Invalid username or password');
-    }*/
-
-    const user = users.find(
+    const user = users.find(        //search for the input user & PW in der users database
         user => user.user === req.body.username && user.password === req.body.password
     )
 
     if(user){
         session=req.session;
-        session.userid=req.body.username;
+        session.userid=req.body.username;       //saving the session of the user
         console.log(req.session);
         res.redirect("/index.html");
     }else {
@@ -121,8 +111,6 @@ app.get('/index.html', (req, res) => {          //checks if you have a valid ses
     session=req.session;
     if(session.userid){
         res.sendFile(__dirname + '/files/html/index.html');
-        //res.send("Welcome User <a href=\'/logout'>click to logout</a>");
-
     }else
         res.sendFile('/files/html/login.html',{root:__dirname});
 });
@@ -150,18 +138,18 @@ app.get('/register', (req, res) => {
 
 app.post('/register', (req, res) => {
     if(req.body.username && req.body.password){
-        const exists = users.some(
+        const exists = users.some(          //search if user already exists in users database
             user => user.user === req.body.username
         )
 
-        if(!exists){
+        if(!exists){                //creates a new user
             const user = {
                 id: users.length + 1,
                 user: req.body.username,
                 password: req.body.password
             }
 
-            users.push(user);
+            users.push(user);       //user is pushed into users database
 
             session=req.session;
             session.userid=req.body.username;
