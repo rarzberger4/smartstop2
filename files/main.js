@@ -5,27 +5,21 @@ window.addEventListener("load", function(){     //loads js after HTML is loaded 
 
 
 
-    loginForm();
 
 
-   /* form
-    action = "/login"
-    method = "post" >
-        < h2 > Login < /h2>
-    <div className="input-field">
-        <input type="text" name="username" id="username" placeholder="Enter Username">
-    </div>
-    <div className="input-field">
-        <input type="password" name="password" id="password" placeholder="Enter Password">
-    </div>
-    <input type="submit" value="LogIn">
-    </form>*/
+
+
+
+
+
+
+
 
 });
 
 
 
-function loginForm(){
+/*function loginForm(){
     //generates login form
 
     let main = document.getElementById("main");
@@ -64,5 +58,5 @@ function loginForm(){
 
     main.appendChild(form);
 
-}
+}*/
 

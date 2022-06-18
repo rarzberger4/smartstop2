@@ -34,22 +34,6 @@ app.use('/api', indexRouter);
 
 
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/files/html/index.html');
-});
-
-app.get('/index.html', (req, res) => {
-    res.sendFile(__dirname + '/files/html/index.html');
-});
-
-app.get('/planner.html', (req, res) => {
-    res.sendFile(__dirname + '/files/html/planner.html');
-});
-
-app.get('/contact.html', (req, res) => {
-    res.sendFile(__dirname + '/files/html/contact.html');
-});
-
 
 
 
@@ -79,26 +63,22 @@ const mypassword = 'mypassword';
 let session;        //this would be stored in a DB
 
 
-// Route to Login Page
 
+// Route to Login Page
 app.get('/login',(req,res) => {
     session=req.session;
-    if(session.userid){
+    if(session.userid){                                                                           //checks if there is a session id (cookie)
         res.sendFile(__dirname + '/files/html/index.html');
-        //res.send("Welcome User <a href=\'/logout'>click to logout</a>");
-
     }else
-        res.sendFile('/files/html/index.html',{root:__dirname});
-        //app.use(express.static((__dirname, 'files')));
+        res.sendFile('/files/html/login.html',{root:__dirname});
 });
 
 
-app.post('/login',(req,res) => {
+app.post('/login',(req,res) => {                            //login form is processed here
     if(req.body.username === myusername && req.body.password === mypassword){
         session=req.session;
         session.userid=req.body.username;
         console.log(req.session);
-        //res.send(`Hey there, welcome <a href=\'/logout'>click to logout</a>`);
         res.sendFile(__dirname + '/files/html/index.html');
 
     }else{
@@ -112,9 +92,39 @@ app.get('/logout',(req,res) => {
 });
 
 
+app.get('/', (req, res) => {                    //sends you directly to login if you land on the page
+    res.sendFile(__dirname + '/files/html/login.html');
+});
 
+app.get('/index.html', (req, res) => {          //checks if you have a valid session before routing you to the page --> logged in
+    session=req.session;
+    if(session.userid){
+        res.sendFile(__dirname + '/files/html/index.html');
+        //res.send("Welcome User <a href=\'/logout'>click to logout</a>");
 
+    }else
+        res.sendFile('/files/html/login.html',{root:__dirname});
+});
 
+app.get('/planner.html', (req, res) => {        //checks if you have a valid session before routing you to the page --> logged in
+    session=req.session;
+    if(session.userid){
+        res.sendFile(__dirname + '/files/html/planner.html');
+        //res.send("Welcome User <a href=\'/logout'>click to logout</a>");
+
+    }else
+        res.sendFile('/files/html/login.html',{root:__dirname});
+});
+
+app.get('/contact.html', (req, res) => {             //checks if you have a valid session before routing you to the page --> logged in
+    session=req.session;
+    if(session.userid){
+        res.sendFile(__dirname + '/files/html/contact.html');
+        //res.send("Welcome User <a href=\'/logout'>click to logout</a>");
+
+    }else
+        res.sendFile('/files/html/login.html',{root:__dirname});
+});
 
 
 
