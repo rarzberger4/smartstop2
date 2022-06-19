@@ -3,6 +3,9 @@
 window.addEventListener("load", function(){     //loads js after HTML is loaded - else possibility of an error js loading to early
 
 
+    let weather = fetch('/api/news');
+    console.log(weather);
+
 
 
 });
