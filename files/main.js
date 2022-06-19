@@ -1,5 +1,6 @@
 
-window.addEventListener("load", loadWeather);      //loads js after HTML is loaded - else possibility of an error js loading to early
+window.addEventListener("load", loadWeather);
+window.addEventListener("load", loadNews);
 
 function loadWeather() {
     fetch("http://localhost:3000/api/weather")
@@ -10,15 +11,27 @@ function loadWeather() {
 
             const feelsLike = "Feels like: " + `${current.feelslike_c}`
             const condition = "Condition: " + `${current.condition.text}`
-            /*
-            console.log(city)
-            console.log(currentTemp)
-            console.log(feelsLike)
-            console.log(condition)
-             */
             weather.innerHTML = "<h2>" + "Weather" + "</h2>" + "<br>" +  "<p>" + city + "<br>" + currentTemp + "<br>" + feelsLike + "<br>" + condition + "</p>";
         })
         .catch(e => {
+            console.log(`Something went wrong: ${e.type}`);
+        })
+}
+
+function loadNews() {
+    fetch("http://localhost:3000/api/news")
+        .then(responseWeather => responseWeather.json())
+        .then(({articles}) => articles.forEach(
+            article => {
+                const title = "<h3>" + `${article.title}` + "</h3>";
+                const url = "<a href='" + `${article.url}` + "' target='blank'>" + `${article.url}` + "</a>";
+                const tempElement = document.createElement("div");
+                tempElement.innerHTML = title;
+                document.getElementById("news").appendChild(tempElement.firstChild);
+                tempElement.innerHTML = url;
+                document.getElementById("news").appendChild(tempElement.firstChild);
+            }))
+            .catch(e => {
             console.log(`Something went wrong: ${e.type}`);
         })
 }
