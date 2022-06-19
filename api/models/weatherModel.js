@@ -1,3 +1,5 @@
+const fetch = require("node-fetch");
+
 class Weather{
     constructor(temp, conditionIcon, conditionText, uv) {
         this.temp = temp;
@@ -16,3 +18,6 @@ class WeatherModel{
             .then(text => new Weather(text.current.temp_c, text.current.condition.icon, text.current.condition.text, text.current.uv))
     }
 }
+
+const model = new WeatherModel();
+module.exports = model;
