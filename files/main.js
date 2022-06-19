@@ -1,54 +1,23 @@
 
+window.addEventListener("load", loadWeather);      //loads js after HTML is loaded - else possibility of an error js loading to early
 
-window.addEventListener("load", function(){     //loads js after HTML is loaded - else possibility of an error js loading to early
-
-
-    let weather = fetch('/api/news');
-    console.log(weather);
-
-
-
-});
-
-
-/*function loginForm(){
-    //generates login form
-
-    let main = document.getElementById("main");
-    let form = document.createElement("form");
-    form.action = "login";
-    form.method = "post";
-    let h2 = document.createElement("h2");
-    h2.innerHTML = "Login";
-    let div = document.createElement("div");
-    div.className = "input-field";
-    let input = document.createElement("input");
-    input.type = "text";
-    input.name = "username"
-    input.id = "username";
-    input.placeholder = "Enter Username";
-
-    let div_2 = document.createElement("div");
-    div_2.className = "input-field";
-    let input_2 = document.createElement("input");
-    input_2.type = "password";
-    input_2.name = "password"
-    input_2.id = "password";
-    input_2.placeholder = "Enter Password";
-
-    let input_3 = document.createElement("input");
-    input_3.type = "submit";
-    input_3.value = "LogIn";
-
-    div.appendChild(input);
-    form.appendChild(h2);
-    form.appendChild(div);
-
-    div_2.appendChild(input_2);
-    form.appendChild(div_2);
-    form.appendChild(input_3);
-
-    main.appendChild(form);
-
-}*/
-
+function loadWeather() {
+    fetch("http://localhost:3000/api/weather")
+        .then(responseWeather => responseWeather.json())
+        .then(({location, current}) => {
+            const city = "Your City: " + `${location.name}`
+            const currentTemp = "Current temperature: " + `${current.temp_c}`
+            const feelsLike = "Feels like: " + `${current.feelslike_c}`
+            const condition = "Condition: " + `${current.condition.text}`
+            /*
+            console.log(city)
+            console.log(currentTemp)
+            console.log(feelsLike)
+            console.log(condition)
+             */
+            weather.innerHTML = "<h2>" + "Weather" + "</h2>" + "<br>" +  "<p>" + city + "<br>" + currentTemp + "<br>" + feelsLike + "<br>" + condition + "</p>";
+        })
+        .catch(e => {
+            console.log(`Something went wrong: ${e.type}`);
+        })
+}

@@ -5,15 +5,11 @@ const controllerWienerLinien = require('../controllers/wienerLinienController');
 
 const routes = Router();
 
-
 //MUST: GET, POST, PUT, DELETE
 //CAN: PATCH
 
 routes.get('/weather', controllerWeather.getWeather);
 routes.get('/news',controllerNews.getNews);
-
-
-
 
 //routes.get('/categories', controller.getCategories);
 //routes.post("/categories/:category/books", controller.createBook);

@@ -1,10 +1,9 @@
 const { Router } = require('express');
 const controllerNews = require('../controllers/newsController');
 const controllerWeather = require('../controllers/weatherController');
-const controllerWL = require('../controllers/wienerLinienController');
+const controllerWienerLinien = require('../controllers/wienerLinienController');
 
 const routes = Router();
-
 
 //MUST: GET, POST, PUT, DELETE
 //CAN: PATCH
