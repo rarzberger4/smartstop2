@@ -6,12 +6,14 @@ function loadWeather() {
     fetch("http://localhost:3000/api/weather/")
         .then(response => response.json())
         .then(({location, current}) => {
-            const city = "City: " + `${location.name}`
-            const time = `${location.localtime}`
-            const currentTemp = "Current temperature: " + `${current.temp_c}` + "°C"
-            const feelsLike = "Feels like: " + `${current.feelslike_c}` + "°C"
-            const condition = "Condition: " + `${current.condition.text}`
-            weather.innerHTML = "<h2>" + "Weather" + "</h2>" + "<br>" +  "<p>" + city + "<br> Time: " + time.substring(11) + "<br>" + currentTemp + "<br>" + feelsLike + "<br>" + condition + "</p>";
+            const text = "<p>City: " + `${location.name}` + "<br>" +
+                "Time: " + `${location.localtime}`.substring(11) + "<br>" +
+                "Current temperature: " + `${current.temp_c}` + "°C" + "<br>" +
+                "Feels like: " + `${current.feelslike_c}` + "°C" + "<br>" +
+                "Condition: " + `${current.condition.text}` + "<p/>"
+            const tempElement = document.createElement("div");
+            tempElement.innerHTML = text;
+            document.getElementById("weather").appendChild(tempElement.firstChild);
         })
         .catch(e => {
             console.log(`Something went wrong: ${e.type}`);
@@ -41,25 +43,26 @@ const id = 22;
 function loadWienerLinien() {
     fetch("http://localhost:3000/api/wienerlinien/"+id)
         .then(response => response.json())
-        .then(({data}) => {
-            const station = "<p>Departure: " + `${data.monitors[0].locationStop.properties.title}` + "<p/>"
-            const linienName = "<p>Linie: " + `${data.monitors[0].lines[0].name}` + "<p/>"
-            const direction = "<p>Direction: " + `${data.monitors[0].lines[0].towards}` + "<p/>"
-            const next = "<p>Nächste Abfahrten: <br>" +
-                `${data.monitors[0].lines[0].departures.departure[0].departureTime.countdown}` + " min<br>" +
-                `${data.monitors[0].lines[0].departures.departure[1].departureTime.countdown}` + " min<br>" +
-                `${data.monitors[0].lines[0].departures.departure[2].departureTime.countdown}` + " min</p>"
-            const tempElement = document.createElement("div");
-            tempElement.innerHTML = station;
-            document.getElementById("wienerLinien").appendChild(tempElement.firstChild);
-            tempElement.innerHTML = linienName;
-            document.getElementById("wienerLinien").appendChild(tempElement.firstChild);
-            tempElement.innerHTML = direction;
-            document.getElementById("wienerLinien").appendChild(tempElement.firstChild);
-            tempElement.innerHTML = next;
-            document.getElementById("wienerLinien").appendChild(tempElement.firstChild);
-
-        })
+        .then(({data}) => data.monitors.forEach(
+            monitor => {
+                console.log(monitor)
+                const station = "<p>Departure: " + `${monitor.locationStop.properties.title}` + "<p/>"
+                const linienName = "<p>Line: " + `${monitor.lines[0].name}` + "<p/>"
+                const direction = "<p>Direction: " + `${monitor.lines[0].towards}` + "<p/>"
+                const next = "<p>Upcomming Departures: <br>" +
+                    `${monitor.lines[0].departures.departure[0].departureTime.countdown}` + " min<br>" +
+                    `${monitor.lines[0].departures.departure[1].departureTime.countdown}` + " min<br>" +
+                    `${monitor.lines[0].departures.departure[2].departureTime.countdown}` + " min</p>"
+                const tempElement = document.createElement("div");
+                tempElement.innerHTML = station;
+                document.getElementById("wienerLinien").appendChild(tempElement.firstChild);
+                tempElement.innerHTML = linienName;
+                document.getElementById("wienerLinien").appendChild(tempElement.firstChild);
+                tempElement.innerHTML = direction;
+                document.getElementById("wienerLinien").appendChild(tempElement.firstChild);
+                tempElement.innerHTML = next;
+                document.getElementById("wienerLinien").appendChild(tempElement.firstChild);
+            }))
         .catch(e => {
             console.log(`Something went wrong: ${e.type}`);
         })
