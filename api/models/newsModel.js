@@ -7,7 +7,7 @@ class NewsModel{
 
 
     async getNews() {
-        return fetch('https://newsapi.org/v2/top-headlines?country=at&category=general&apiKey='+key)
+        return fetch('https://newsapi.org/v2/top-headlines?country=at&category=general&pageSize=3&apiKey='+key)
             .then((responseWeather) => responseWeather.json())
             .then((responseData) => {
                 return responseData
