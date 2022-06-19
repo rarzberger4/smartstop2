@@ -54,9 +54,9 @@ app.use(sessions({
 
 //users and PWs --> usually a DB
 const users = [
-    { id: 1, user: "user1", password: "secret"},
-    { id: 2, user: "user2", password: "secret"},
-    { id: 3, user: "user3", password: "secret"},
+    { user: "user1", password: "secret"},
+    { user: "user2", password: "secret"},
+    { user: "user3", password: "secret"},
 ]
 
 // cookie parser middleware
@@ -144,7 +144,6 @@ app.post('/register', (req, res) => {
 
         if(!exists){                //creates a new user
             const user = {
-                id: users.length + 1,
                 user: req.body.username,
                 password: req.body.password
             }
@@ -163,11 +162,59 @@ app.post('/register', (req, res) => {
 
 });
 
+app.get('/userEdit', (req, res) =>{
+    session=req.session;
+    if(session.userid){
+        res.sendFile(__dirname + '/files/html/editUser.html');
+    }else
+        res.sendFile('/files/html/login.html',{root:__dirname});
+});
+
+app.post("/userDelete", (req, res) =>{
+
+    if(req.body.username && req.body.password){
+        const exists = users.some(          //search if user already exists in users database
+            user => user.user === req.body.username
+        )
+
+        if(!exists){                //creates a new user
+            const user = {
+                user: req.body.username,
+                password: req.body.password
+            }
+
+            users.push(user);       //user is pushed into users database
+
+            session=req.session;
+            session.userid=req.body.username;
+            console.log(req.session);
+            res.redirect("/index.html");
+        }else{
+            res.redirect("/register" + encodeURIComponent('Incorrect username or password'));
+        }
+
+    }
 
 
 
+    /*
+        const user = users.find(        //search for the input user & PW in der users database
+            user => user.user === req.body.username && user.password === req.body.password
+        )
+        console.log(req.body.username + " " + req.body.password);
 
 
+        if(!user){                //creates a new user
+            users.splice(users.indexOf(req.body.password, req.body.username), 1)   //user is deleted in the DB
+            console.log("user deleted");
+            res.redirect("/");
+        }
+        */
+});
+
+app.put("/userUpdate",(req, res) =>{
+
+});
 
 
 app.listen(port, (error) => {
