@@ -1,8 +1,8 @@
 const model = require("../models/newsModel");
 
 class NewsController {
-    getNews(req, res){
-        res.send(model.getNewsbyTopic())
+    async getNews(req, res) {
+        res.send(await model.getNews())
     }
 }
 module.exports = new NewsController();

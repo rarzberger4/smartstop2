@@ -1,14 +1,19 @@
-const NewsAPI = require('newsapi');
+const fetch = require("node-fetch");
 const key = '91575b8a494a4a2a942befe9c9095a55';
 
-const news = new NewsAPI(key);
 
 
 class NewsModel{
-    getNews(){
-        return news.v2.sources({
-            q: 'Vienna',
-            language: 'en'
-        }).then(responseNews => JSON.parse(responseNews))
+
+
+    async getNews() {
+        return fetch('https://newsapi.org/v2/top-headlines?country=at&category=general&apiKey='+key)
+            .then((responseWeather) => responseWeather.json())
+            .then((responseData) => {
+                return responseData
+            })
     }
 }
+
+let model = new NewsModel();
+module.exports = model;
