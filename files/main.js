@@ -5,16 +5,6 @@ window.addEventListener("load", function(){     //loads js after HTML is loaded 
 
 
 
-
-
-
-
-
-
-
-
-
-
 });
 
 

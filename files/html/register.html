@@ -3,14 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
-  <form method='post' action='/register'>
-    <input type = "text" name = 'username' placeholder="username" id="username" required/>
-      <input type = "password" name="password" placeholder="Password" id="password" required/>
-      <input type="submit" value="Send">
-    </form>
-    <a href="/">Login</a>
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <link href="../Stylesheets/register.css" rel="stylesheet">
 </head>
 <body>
-
+<header id="header">
+    <h1>Register</h1>
+</header>
+<main>
+    <form id="registerForm" action="/register" method="post">
+        <section id="usernameSection">
+            <label id="usernameLabel" for="usernameInput">Username:</label>
+            <input id="usernameInput" name="username" placeholder="Create Username" required type="text">
+        </section>
+        <section id="passwordSection">
+            <label id="passwordLabel" for="passwordInput">Password:</label>
+            <input id="passwordInput" name="password" placeholder="Create Password" required type="password">
+        </section>
+        <input id="send" type="submit" value="Send">
+    </form>
+    <form id="loginForm" action="/login" method="get">
+        <input id="cancel" type="submit" value="Cancel">
+    </form>
+</main>
+<footer id="footer"> Project for Web technologies & Presentations MODUL </footer>
 </body>
 </html>

@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport">
+    <link href="../Stylesheets/login.css" rel="stylesheet">
 </head>
-<main>
-  <form
-  action = "/login"
-  method = "post" >
-  <h2> Login </h2>
-  <div className="input-field">
-    <input type="text" name="username" id="username" placeholder="Enter Username" required>
-  </div>
-  <div className="input-field">
-    <input type="password" name="password" id="password" placeholder="Enter Password" required>
-  </div>
-  <input type="submit" value="LogIn">
-  </form>
-  <a href="/register">Register</a>
-</main>
 <body>
-
+<header id="header">
+    <h1>Login</h1>
+</header>
+<main>
+    <form id="loginForm" action="/login" method="post">
+        <section id="usernameSection">
+            <label id="usernameLabel" for="usernameInput">Username:</label>
+            <input id="usernameInput" name="username" placeholder="Enter Username" required type="text">
+        </section>
+        <section id="passwordSection">
+            <label id="passwordLabel" for="password">Password:</label>
+            <input id="password" name="password" placeholder="Enter Password" required type="password">
+        </section>
+        <input id="login" type="submit" value="Login">
+    </form>
+    <form id="registerForm" action="/register" method="get">
+        <input id="register" type="submit" value="Register">
+    </form>
+</main>
+<footer id="footer"> Project for Web technologies & Presentations MODUL </footer>
 </body>
 </html>

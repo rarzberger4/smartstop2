@@ -1,90 +1,91 @@
-body{
+body {
+    background-color: white;
+    padding: 10px;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-auto-flow: row;
     grid-gap: 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr 2fr 8fr 1fr;
     grid-template-areas:
         "header"
-        "n"
+        "nav"
         "wienerLinien"
-        "footer";
-    background-color: white;
-    border-color: black;
+        "logout";
 }
 
 @media (min-width: 642px) {
     body {
+        background-color: black;
         padding: 15px;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-        gap: 0 0;
-        grid-gap: 20px;
         grid-auto-flow: row;
+        grid-gap: 20px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 4fr 2fr 8fr 1fr;
         grid-template-areas:
-            "header header header"
-            "n n n"
-            "wienerLinien wienerLinien wienerLinien"
-            "footer footer footer";
-        background-color: black;
+            "header"
+            "nav"
+            "wienerLinien"
+            "logout";
+    }
+
+    footer {
+        color: white;
     }
 }
 
-#header{
+header {
     grid-area: header;
     position: sticky;
     text-align: center
 }
 
-h1{
+h1 {
     color: #ffc125;
     font: 60px/70px 'DIGITAL', Helvetica;
     font-weight: 700;
 }
 
-#navbar{
-    grid-area: n;
+nav {
+    grid-area: nav;
     position: sticky;
     background: #444c44;
+    height: 60px
 }
 
-nav ul{
+nav ul {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     list-style-type: none;
 }
-nav ul li{
+
+nav ul li {
     flex: 1;
     vertical-align: middle;
     text-align: center
 }
 
-a{
+a {
     color: white;
 }
 
-#wienerLinien{
+#wienerLinien {
     grid-area: wienerLinien;
-    border-collapse: collapse;
     padding: 10px;
-
     background: limegreen;
-    border-color: ghostwhite;
+    border-color: limegreen;
     border-style: solid;
 }
 
-#footer{
-    grid-area: footer;
+footer {
     position: sticky;
     text-align: center;
     font-size: small;
-    color: white;
 }
 
-*{
+* {
     color: black;
     font: 15px/25px 'DIGITAL', Helvetica;
 
@@ -93,4 +94,17 @@ a{
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+form {
+    grid-area: logout;
+    display: flex;
+    flex-direction: column;
+}
+
+form input[type="submit"] {
+    background: linear-gradient(to left, #4776E6, #8e54e9);
+    color: black;
+    border-radius: 4px;
+    padding: 0.4rem;
 }

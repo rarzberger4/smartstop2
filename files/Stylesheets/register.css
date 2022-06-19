@@ -1,0 +1,132 @@
+body {
+    background-color: white;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    gap: 10px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
+}
+
+header {
+    grid-area: header;
+    position: sticky;
+    text-align: center;
+}
+
+main {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr;
+    gap: 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "registerForm"
+    "loginForm";
+    grid-area: main;
+}
+
+#registerForm {
+    display: grid;
+    grid-area: registerForm;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0;
+    grid-auto-flow: row;
+    grid-template-areas:
+            "usernameSection"
+            "passwordSection"
+            "send";
+}
+
+#usernameSection {
+    grid-area: usernameSection;
+    justify-self: center;
+    padding: 10px;
+}
+
+#passwordSection {
+    grid-area: passwordSection;
+    justify-self: center;
+    padding: 10px;
+}
+
+#send {
+    grid-area: send;
+}
+
+#loginForm {
+    grid-area: loginForm;
+}
+
+footer {
+    grid-area: footer;
+    position: sticky;
+    text-align: center;
+    font-size: small;
+}
+
+h1 {
+    color: #ffc125;
+    font: 60px/70px 'DIGITAL', Helvetica;
+    font-weight: 700;
+}
+
+a {
+    color: white;
+}
+
+* {
+    color: black;
+    font: 15px/25px 'DIGITAL', Helvetica;
+
+    /* Round corners */
+    border: 3px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input[type="submit"] {
+    background: linear-gradient(to left, #4776E6, #8e54e9);
+    color: black;
+    border-radius: 4px;
+    margin-top: 2rem;
+    padding: 0.4rem;
+}
+
+input {
+    padding: 3px;
+}
+
+@media (min-width: 642px) {
+    body, main {
+        background-color: black;
+    }
+
+    footer, #usernameLabel, #passwordLabel {
+        color: white;
+    }
+
+    #registerForm {
+        display: grid;
+        grid-area: registerForm;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2fr 1fr;
+        gap: 0;
+        grid-auto-flow: row;
+        grid-template-areas:
+    "usernameSection passwordSection"
+    "send send";
+    }
+}
