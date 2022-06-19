@@ -10,6 +10,7 @@ const routes = Router();
 
 routes.get('/weather', controllerWeather.getWeather);
 routes.get('/news',controllerNews.getNews);
+routes.get('/wienerlinien/:id', controllerWienerLinien.getTime);
 
 //routes.get('/categories', controller.getCategories);
 //routes.post("/categories/:category/books", controller.createBook);

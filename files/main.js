@@ -7,6 +7,7 @@ function loadWeather() {
         .then(({location, current}) => {
             const city = "Your City: " + `${location.name}`
             const currentTemp = "Current temperature: " + `${current.temp_c}`
+
             const feelsLike = "Feels like: " + `${current.feelslike_c}`
             const condition = "Condition: " + `${current.condition.text}`
             /*

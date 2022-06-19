@@ -1,6 +1,8 @@
 const model = require("../models/wienerLinienModel");
 
 class WienerLinienController {
-    //Methods to be used in routers need to be defined here
+    async getTime(req, res) {
+        res.send(await model.getTime(req.params.id));
+    }
 }
 module.exports = new WienerLinienController();
