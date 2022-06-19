@@ -8,21 +8,49 @@
     <script src="../contact.js"></script>
 </head>
 <body>
-    <header id="header">
-        <h1>SmartStop</h1>
-    </header>
-    <nav id="navbar">
-        <ul>
-            <li> <a href="index.html">Home</a></li>
-            <li> <a href="planner.html">Planner</a></li>
-            <li> <a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <section id="form">Form</section>
-    <section id="about">About</section>
-    <form id="logout" action = "/logout" method = "get" >
-        <input type="submit" value="LogOut">
+<header>
+    <h1>Contact</h1>
+</header>
+<nav>
+    <ul>
+        <li> <a href="index.html">Home</a></li>
+        <li> <a href="planner.html">Planner</a></li>
+        <li> <a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+<main>
+    <section id="contactInfoSection">
+        <h2>Contact Info</h2>
+        <p>FH Campus Wien<br>
+            Favoritenstraße 226<br>
+            1100 Wien, Austria<br>
+            +43 1 606 68 77-6600<br>
+            office@fh-campuswien.ac.at</p>
+    </section>
+    <form id="contactForm" action="https://formsubmit.co/cea9c1cc294e91e591c9f76215decb8b" method="POST">
+        <h2 id="contactFormTitle">Contact Form</h2>
+        <section id="userNameSection">
+            <input type="text" id="userName" ><br>
+            <label for="userName">Your Username</label>
+        </section>
+        <section id="userEMailSection">
+            <input type="email" id="userEmail" ><br>
+            <label for="userEmail">Your Email Address</label>
+        </section>
+        <section id="subjectSection">
+            <input type="text" id="subject" ><br>
+            <label for="subject">Subject</label>
+        </section>
+        <section id="messageSection">
+            <textarea id="message" rows="5" ></textarea><br>
+            <label for="message">Message</label>
+        </section>
+        <button id="send" type="submit">Submit</button>
     </form>
-</body>
+    <form id="logoutForm" action = "/logout" method = "get" >
+        <button type="submit">LogOut</button>
+    </form>
+</main>
 <footer id="footer"> Project for Web technologies & Presentations MODUL </footer>
+</body>
 </html>

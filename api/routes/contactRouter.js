@@ -1,15 +1,10 @@
 const { Router } = require('express');
-const controllerNews = require('../controllers/newsController');
-const controllerWeather = require('../controllers/weatherController');
-const controllerWienerLinien = require('../controllers/wienerLinienController');
 
-const routes = Router();
+const router = new Router();
 
-//MUST: GET, POST, PUT, DELETE
-//CAN: PATCH
-//routes.get('/categories', controller.getCategories);
-//routes.post("/categories/:category/books", controller.createBook);
-//routes.put("/books/:id", controller.updateBook);
-//routes.delete("/books/:id", controller.deleteBook);
+router.post('/contact', (req, res) => {
+    console.log(req.body);
+    res.redirect('/index.html');
+});
 
-module.exports = routes;
+module.exports = router;

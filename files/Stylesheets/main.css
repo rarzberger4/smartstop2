@@ -24,7 +24,7 @@ body {
         grid-auto-flow: row;
         grid-gap: 20px;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 4fr 2fr 15fr 7fr 1fr 1fr;
+        grid-template-rows: 4fr 2fr 13fr 6.5fr 1fr 1fr;
         grid-template-areas:
             "header header"
             "nav nav"
@@ -47,7 +47,7 @@ header {
 
 h1 {
     color: #ffc125;
-    font: 60px/70px 'DIGITAL', Helvetica;
+    font: 60px 'DIGITAL', Helvetica;
     font-weight: 700;
 }
 

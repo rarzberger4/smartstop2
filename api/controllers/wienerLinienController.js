@@ -5,4 +5,5 @@ class WienerLinienController {
         res.send(await model.getTime(req.params.id));
     }
 }
+
 module.exports = new WienerLinienController();

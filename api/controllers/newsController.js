@@ -5,4 +5,5 @@ class NewsController {
         res.send(await model.getNews())
     }
 }
+
 module.exports = new NewsController();
