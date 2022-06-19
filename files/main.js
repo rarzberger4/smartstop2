@@ -42,10 +42,10 @@ function loadWienerLinien() {
     fetch("http://localhost:3000/api/wienerlinien/"+id)
         .then(response => response.json())
         .then(({data}) => {
-            const station = "<p> Departure: " + `${data.monitors[0].locationStop.properties.title}` + "<p/>"
-            const linienName = "<p> <br> Linie: " + `${data.monitors[0].lines[0].name}` + "<p/>"
-            const direction = "<p> <br> Direction: " + `${data.monitors[0].lines[0].towards}` + "<p/>"
-            const next = "<p><br>Nächste Abfahrten: <br>" +
+            const station = "<p>Departure: " + `${data.monitors[0].locationStop.properties.title}` + "<p/>"
+            const linienName = "<p>Linie: " + `${data.monitors[0].lines[0].name}` + "<p/>"
+            const direction = "<p>Direction: " + `${data.monitors[0].lines[0].towards}` + "<p/>"
+            const next = "<p>Nächste Abfahrten: <br>" +
                 `${data.monitors[0].lines[0].departures.departure[0].departureTime.countdown}` + " min<br>" +
                 `${data.monitors[0].lines[0].departures.departure[1].departureTime.countdown}` + " min<br>" +
                 `${data.monitors[0].lines[0].departures.departure[2].departureTime.countdown}` + " min</p>"
