@@ -110,6 +110,7 @@ a {
     background: yellowgreen;
     border-color: yellowgreen;
     border-style: solid;
+    word-break: break-all;
 }
 
 footer {
