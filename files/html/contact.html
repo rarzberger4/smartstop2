@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <title>Contact</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../Stylesheets/contact.css">
-    <script src="../contact.js"></script>
+    <link rel="stylesheet" href="../css/contact.css">
 </head>
 <body>
 <header>
@@ -30,19 +29,19 @@
     <form id="contactForm" action="https://formsubmit.co/cea9c1cc294e91e591c9f76215decb8b" method="POST">
         <h2 id="contactFormTitle">Contact Form</h2>
         <section id="userNameSection">
-            <input type="text" id="userName" ><br>
+            <input type="text" id="userName" required><br>
             <label for="userName">Your Username</label>
         </section>
         <section id="userEMailSection">
-            <input type="email" id="userEmail" ><br>
+            <input type="email" id="userEmail" required><br>
             <label for="userEmail">Your Email Address</label>
         </section>
         <section id="subjectSection">
-            <input type="text" id="subject" ><br>
+            <input type="text" id="subject" required><br>
             <label for="subject">Subject</label>
         </section>
         <section id="messageSection">
-            <textarea id="message" rows="5" ></textarea><br>
+            <textarea id="message" rows="5" required></textarea><br>
             <label for="message">Message</label>
         </section>
         <button id="send" type="submit">Submit</button>

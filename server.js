@@ -1,12 +1,9 @@
-const path = require('path');
 const bodyParser = require('body-parser');
 const express = require('express');
 const cookieParser = require("cookie-parser");      //session management
 const sessions = require('express-session');        //session management
 
 const indexRouter = require('./api/routes/indexRouter')
-const plannerRouter = require('./api/routes/plannerRouter')
-const contactRouter = require('./api/routes/contactRouter')
 
 const app = express();
 const port = process.env.PORT ?? 3000;
@@ -22,16 +19,6 @@ app.use(bodyParser.json());
 
 // Include the index routes
 app.use('/api', indexRouter);
-
-//Include the planner routes
-app.use('/api', plannerRouter);
-
-//Include the contact routes
-app.use('/api', contactRouter);
-
-//Include the index routes
-app.use('/api', indexRouter);
-
 
 
 
@@ -172,7 +159,7 @@ app.get('/user', (req, res) =>{
         res.sendFile('/files/html/login.html',{root:__dirname});
 });
 
-app.delete("/user", (req, res) => {
+app.delete("/user", (req) => {
 
     session = req.session;
     if(session.userid){
@@ -194,16 +181,13 @@ app.delete("/user", (req, res) => {
         }
     });
 
-app.put("/user",(req, res) =>{
+app.put("/user",(req) =>{
     session = req.session;
     if(session.userid){
     }
     const user = users.find(        //search for the input user & PW in der users database
         user => user.user === session.userid
     )
-
-
-
 
     user.password = req.query.pw;
 

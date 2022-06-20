@@ -3,9 +3,7 @@ const controllerNews = require('../controllers/newsController');
 const controllerWeather = require('../controllers/weatherController');
 const controllerWienerLinien = require('../controllers/wienerLinienController');
 
-const router = new Router();
-
-//MUST: GET, POST, PUT, DELETE
+const router = Router();
 
 router.get('/weather', controllerWeather.getWeather);
 router.get('/news',controllerNews.getNews);

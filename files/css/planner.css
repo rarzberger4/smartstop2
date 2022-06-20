@@ -9,24 +9,13 @@ body {
     grid-template-areas:
         "header"
         "nav"
-        "wienerLinien"
+        "main"
         "logout";
 }
 
 @media (min-width: 642px) {
     body {
         background-color: black;
-        padding: 15px;
-        display: grid;
-        grid-auto-flow: row;
-        grid-gap: 20px;
-        grid-template-columns: 1fr;
-        grid-template-rows: 4fr 2fr 8fr 1fr;
-        grid-template-areas:
-            "header"
-            "nav"
-            "wienerLinien"
-            "logout";
     }
 
     footer {
@@ -38,12 +27,6 @@ header {
     grid-area: header;
     position: sticky;
     text-align: center
-}
-
-h1 {
-    color: #ffc125;
-    font: 60px/70px 'DIGITAL', Helvetica;
-    font-weight: 700;
 }
 
 nav {
@@ -67,24 +50,6 @@ nav ul li {
     text-align: center
 }
 
-a {
-    color: white;
-}
-
-#wienerLinien {
-    grid-area: wienerLinien;
-    padding: 10px;
-    background: limegreen;
-    border-color: limegreen;
-    border-style: solid;
-}
-
-footer {
-    position: sticky;
-    text-align: center;
-    font-size: small;
-}
-
 * {
     color: black;
     font: 15px/25px 'DIGITAL', Helvetica;
@@ -94,6 +59,28 @@ footer {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+h1 {
+    color: #ffc125;
+    font: 60px/70px 'DIGITAL', Helvetica;
+    font-weight: 700;
+}
+
+h2 {
+    color: #656562;
+    font: 30px 'DIGITAL', Helvetica;
+    font-weight: 700;
+}
+
+a {
+    color: white;
+}
+
+footer {
+    position: sticky;
+    text-align: center;
+    font-size: small;
 }
 
 form {
@@ -108,3 +95,12 @@ form input[type="submit"] {
     border-radius: 4px;
     padding: 0.4rem;
 }
+
+main {
+    grid-area: main;
+    padding: 10px;
+    background: limegreen;
+    border-color: limegreen;
+    border-style: solid;
+}
+
