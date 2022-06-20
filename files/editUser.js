@@ -1,6 +1,12 @@
 function getPW(){
     const val = document.querySelector("input").value;
     console.log(val);
+
+    if (!val) {
+        alert("pl enter new pw");
+        return;
+    }
+
     const XHR = new XMLHttpRequest();
     // Set up our request
     XHR.open("put", "http://localhost:3000/user?pw="+val);
