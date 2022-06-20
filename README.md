@@ -15,7 +15,8 @@ A web application to display
 It was made for the subject Web Technologies at FH Campus Wien.
 
 ## Technologies
-Backend: 
-Frontend: 
+Backend: Node JS
+Frontend: JS
 
 ## How to start:
+use nodeamon in the current directory
