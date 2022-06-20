@@ -37,7 +37,6 @@ app.use('/api', indexRouter);
 
 
 
-
 //###Session Management & Routing###
 
 
@@ -81,6 +80,9 @@ app.post('/login',(req,res) => {            //login form is processed here
     const user = users.find(        //search for the input user & PW in der users database
         user => user.user === req.body.username && user.password === req.body.password
     )
+
+    console.log("PW: "+req.body.password);
+    console.log("User: "+req.body.username);
 
     if(user){
         session=req.session;
@@ -171,50 +173,39 @@ app.get('/user', (req, res) =>{
 });
 
 app.delete("/user", (req, res) => {
-    console.log("TEST");
 
-
+    session = req.session;
+    if(session.userid){
+    }
     const user = users.find(        //search for the input user & PW in der users database
-        user => user.user === req.params.username && user.password === req.params.password
+        user => user.user === session.userid
     )
 
-    console.log("PW: "+req.params.password);
-    console.log("User: "+req.params.username);
+    console.log("User: "+req.session.userid);
+
     if(user){
-        console.log("Test2");
-        /*const exists = users.some(          //search if user already exists in users database
-            user => user.user === session.password
-        )*/
-
-
-
-            //users.push(user);       //user is pushed into users database
-
-
-            res.redirect("/logout");
-        }else{
-            res.redirect("/user" + encodeURIComponent('Incorrect username or password'));
+        const index = users.indexOf(user);
+        if (index > -1) {
+            users.splice(index, 1); // 2nd parameter means remove one item only
         }
 
+        req.session.destroy();
+        console.log("User deleted");
+        }
     });
 
-
-
-    /*
-        const user = users.find(        //search for the input user & PW in der users database
-            user => user.user === req.body.username && user.password === req.body.password
-        )
-        console.log(req.body.username + " " + req.body.password);
-
-
-        if(!user){                //creates a new user
-            users.splice(users.indexOf(req.body.password, req.body.username), 1)   //user is deleted in the DB
-            console.log("user deleted");
-            res.redirect("/");
-        }
-        */
-
 app.put("/user",(req, res) =>{
+    session = req.session;
+    if(session.userid){
+    }
+    const user = users.find(        //search for the input user & PW in der users database
+        user => user.user === session.userid
+    )
+
+
+
+
+    user.password = req.query.pw;
 
 });
 
