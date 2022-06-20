@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>SmartStop</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../Stylesheets/main.css">
+    <link rel="stylesheet" href="../Stylesheets/editUser.css">
     <script src="../editUser.js"></script>
 </head>
 <body>
@@ -14,19 +14,22 @@
 <nav id="navbar">
     <ul>
         <li> <a href="index.html">Home</a></li>
+        <li> <a href="planner.html">Planner</a></li>
+        <li> <a href="contact.html">Contact</a></li>
     </ul>
 </nav>
 <main>
-    <form id="myForm">
-        <button type="submit">Delete!</button>
-    </form>
-
+    <form id="changePW">
         <input type="password" id="pwInput">
-    <button type="submit" id="button" onclick="getPW()">Change Password</button>
+        <button type="submit" onclick="getPW()">Change Password</button>
+    </form>
+    <form id="deleteUser">
+        <button type="submit">Delete User</button>
+    </form>
 
 </main>
 <form id="logout" action = "/logout" method = "get" >
-    <input type="submit" value="LogOut">
+    <button type="submit">LogOut</button>
 </form>
 </body>
 <footer id="footer"> Project for Web technologies & Presentations MODUL </footer>
