@@ -162,7 +162,7 @@ app.post('/register', (req, res) => {
 
 });
 
-app.get('/userEdit', (req, res) =>{
+app.get('/user', (req, res) =>{
     session=req.session;
     if(session.userid){
         res.sendFile(__dirname + '/files/html/editUser.html');
@@ -170,30 +170,33 @@ app.get('/userEdit', (req, res) =>{
         res.sendFile('/files/html/login.html',{root:__dirname});
 });
 
-app.post("/userDelete", (req, res) =>{
+app.delete("/user", (req, res) => {
+    console.log("TEST");
 
-    if(req.body.username && req.body.password){
-        const exists = users.some(          //search if user already exists in users database
-            user => user.user === req.body.username
-        )
 
-        if(!exists){                //creates a new user
-            const user = {
-                user: req.body.username,
-                password: req.body.password
-            }
+    const user = users.find(        //search for the input user & PW in der users database
+        user => user.user === req.params.username && user.password === req.params.password
+    )
 
-            users.push(user);       //user is pushed into users database
+    console.log("PW: "+req.params.password);
+    console.log("User: "+req.params.username);
+    if(user){
+        console.log("Test2");
+        /*const exists = users.some(          //search if user already exists in users database
+            user => user.user === session.password
+        )*/
 
-            session=req.session;
-            session.userid=req.body.username;
-            console.log(req.session);
-            res.redirect("/index.html");
+
+
+            //users.push(user);       //user is pushed into users database
+
+
+            res.redirect("/logout");
         }else{
-            res.redirect("/register" + encodeURIComponent('Incorrect username or password'));
+            res.redirect("/user" + encodeURIComponent('Incorrect username or password'));
         }
 
-    }
+    });
 
 
 
@@ -210,9 +213,8 @@ app.post("/userDelete", (req, res) =>{
             res.redirect("/");
         }
         */
-});
 
-app.put("/userUpdate",(req, res) =>{
+app.put("/user",(req, res) =>{
 
 });
 
